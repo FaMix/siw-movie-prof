@@ -29,6 +29,9 @@ public class Artist {
 	private LocalDate dateOfBirth;
 	private String urlOfPicture;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfDeath;
+	
 	@ManyToMany(mappedBy="actors")
 	private Set<Movie> starredMovies;
 	
@@ -40,6 +43,30 @@ public class Artist {
 		this.directedMovies = new LinkedList<>();
 	}
 	
+	public LocalDate getDateOfDeath() {
+		return dateOfDeath;
+	}
+
+	public void setDateOfDeath(LocalDate dateOfDeath) {
+		this.dateOfDeath = dateOfDeath;
+	}
+
+	public Set<Movie> getStarredMovies() {
+		return starredMovies;
+	}
+
+	public void setStarredMovies(Set<Movie> starredMovies) {
+		this.starredMovies = starredMovies;
+	}
+
+	public List<Movie> getDirectedMovies() {
+		return directedMovies;
+	}
+
+	public void setDirectedMovies(List<Movie> directedMovies) {
+		this.directedMovies = directedMovies;
+	}
+
 	public Long getId() {
 		return id;
 	}

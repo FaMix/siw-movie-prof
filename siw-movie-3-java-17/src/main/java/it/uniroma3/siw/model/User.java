@@ -1,9 +1,12 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -20,8 +23,20 @@ public class User {
 	private String surname;
 	@NotBlank
 	private String email;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<Review> reviews;
 
-    public Long getId() {
+
+    public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
