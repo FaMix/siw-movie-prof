@@ -38,7 +38,7 @@ public class Movie {
         @ManyToMany
         private Set<Artist> actors;
         
-        @OneToMany(mappedBy = "reviewdMovie")
+        @OneToMany(mappedBy = "reviewedMovie")
         private Set<Review> reviews;
     
         public Set<Review> getReviews() {
