@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Movie;
+import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.repository.MovieRepository;
 
@@ -57,6 +58,10 @@ public class MovieService {
 		Set<Artist> actors = movie.getActors();
 		actors.remove(actor);
 		return this.save(movie);
+	}
+
+	public void addReviewToMovie(Movie movie, Review review) {
+		movie.getReviews().add(review);
 	}
 
 }

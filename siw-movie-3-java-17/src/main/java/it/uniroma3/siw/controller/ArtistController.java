@@ -37,8 +37,8 @@ public class ArtistController {
 	@PostMapping("/admin/artist")
 	public String newArtist(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
 		this.artistValidator.validate(artist, bindingResult);
-		if (!this.artistService.existsByNameAndSurname(artist)) {
-			this.artistService.save(artist); 
+		if (!bindingResult.hasErrors()) {
+			this.artistService.save(artist);
 			model.addAttribute("artist", artist);
 			return "artist.html";
 		} else {

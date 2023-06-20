@@ -22,7 +22,18 @@
         <span th:text="${movie.title}">Up!</span>
         <span th:text="'(' + ${movie.year} + ')'">2000</span>
         <span><img width="5%" th:src=${movie.urlImage} /></span>
+        
+        <div>
+			<h2>Recensioni</h2>
+			<div th:if="${movie.reviews.isEmpty()}">Non ci sono recensioni</div>
+			<div th:each="review : ${movie.reviews}">
+				<h4 th:text="${review.title}"></h4>
+				<span th:text="${review.text}"></span><br>
+				<span th:text="${review.grade}"></span>
+			</div>
+		</div>
     </div>
+    
     <div th:unless="${movie}">Non esiste</div>
   </body>
 </html>

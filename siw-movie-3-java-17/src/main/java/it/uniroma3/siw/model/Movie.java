@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -30,7 +32,7 @@ public class Movie {
         @Max(2023)
         private Integer year;
         
-        private String urlImage;
+        private Set<File> images;
         
         @ManyToOne
         private Artist director;
@@ -40,6 +42,10 @@ public class Movie {
         
         @OneToMany(mappedBy = "reviewedMovie")
         private Set<Review> reviews;
+        
+        public Movie() {
+        	this.reviews = new HashSet<>();
+        }
     
         public Set<Review> getReviews() {
 			return reviews;
@@ -72,15 +78,15 @@ public class Movie {
             this.year = year;
         }
         
-        public String getUrlImage() {
-            return urlImage;
-        }
-    
-        public void setUrlImage(String urlImage) {
-            this.urlImage = urlImage;
-        }
-    
-        public Artist getDirector() {
+        public Set<File> getImages() {
+			return images;
+		}
+
+		public void setImages(Set<File> images) {
+			this.images = images;
+		}
+
+		public Artist getDirector() {
             return director;
         }
     

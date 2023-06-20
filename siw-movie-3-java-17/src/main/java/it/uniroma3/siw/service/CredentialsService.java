@@ -37,4 +37,12 @@ public class CredentialsService {
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }
+
+	public boolean existsByUsername(String username) {
+		return this.credentialsRepository.existsByUsername(username);
+	}
+
+	public Credentials findByUsername(String username) {
+		return this.credentialsRepository.findByUsername(username).get();
+	}
 }

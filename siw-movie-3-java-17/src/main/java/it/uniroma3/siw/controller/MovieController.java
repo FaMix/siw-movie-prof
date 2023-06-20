@@ -78,7 +78,7 @@ public class MovieController {
 			model.addAttribute("movie", movie);
 			return "movie.html";
 		} else {
-			return "admin/formNewMovie.html"; 
+			return "admin/formNewMovie.html";
 		}
 	}
 
@@ -140,5 +140,3 @@ public class MovieController {
 		return "admin/actorsToAdd.html";
 	}
 }
-
-

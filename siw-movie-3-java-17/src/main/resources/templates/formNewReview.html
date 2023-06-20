@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Review</title>
+		<link rel="stylesheet" href="/css/stile.css"/>
+	</head>
+	
+	<body>
+		<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+	<h1>Scrivi una recensione</h1>
+	<form th:action="@{'/review/'+${movieId}}" method="POST" th:object="${review}">
+		<input type="hidden" th:name="username" th:value="${userDetails.username}" />
+		<div>
+			<label>Titolo:</label>
+			<span><input type="text" th:field="${review.title}" /></span>
+		    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+		    </span>
+		</div>
+		<div>
+			<label>Testo:</label> <textarea rows = "5" cols = "60" th:field="${review.text}" /></textarea>
+		    <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
+		    </span>
+		</div>
+
+		<div>
+			<label>Voto</label>
+			<select name="voti" th:field="${review.grade}">
+				<option value="1">1</option>
+       			<option value="2">2</option>
+        		<option value="3">3</option>
+        		<option value="4">4</option>
+        		<option value="5">5</option>
+      		</select>
+		</div>
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+		
+	</body>
+</html>
