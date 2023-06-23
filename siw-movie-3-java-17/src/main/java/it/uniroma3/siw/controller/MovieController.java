@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.controller.validator.MovieValidator;
 import it.uniroma3.siw.model.Artist;
+import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.service.ArtistService;
+import it.uniroma3.siw.service.FileStorageService;
+import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.MovieService;
 import jakarta.validation.Valid;
 
@@ -29,7 +33,13 @@ public class MovieController {
 
 	@Autowired 
 	private MovieValidator movieValidator;
-
+	
+	@Autowired
+	private FileStorageService storageService;
+	
+	@Autowired
+	private ImageService imageService;
+	
 	@GetMapping(value="/admin/formNewMovie")
 	public String formNewMovie(Model model) {
 		model.addAttribute("movie", new Movie());
@@ -54,7 +64,8 @@ public class MovieController {
 	}
 	
 	@GetMapping(value="/admin/setDirectorToMovie/{directorId}/{movieId}")
-	public String setDirectorToMovie(@PathVariable("directorId") Long directorId, @PathVariable("movieId") Long movieId, Model model) {
+	public String setDirectorToMovie(@PathVariable("directorId") Long directorId, 
+			@PathVariable("movieId") Long movieId, Model model) {
 		Movie movie = this.movieService.setDirectorToMovie(directorId, movieId);
 		
 		model.addAttribute("movie", movie);
@@ -70,16 +81,40 @@ public class MovieController {
 	}
 
 	@PostMapping("/admin/movie")
-	public String newMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
-		
+	public String newMovie(@Valid @ModelAttribute("movie") Movie movie, 
+			BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
 		this.movieValidator.validate(movie, bindingResult);
 		if (!bindingResult.hasErrors()) {
+			if(file.getSize() != 0) {
+				Image image = this.storageService.createImage(file);
+				movie.getImages().add(image);
+				this.imageService.save(image);
+			}
 			this.movieService.save(movie); 
 			model.addAttribute("movie", movie);
+			
 			return "movie.html";
 		} else {
 			return "admin/formNewMovie.html";
 		}
+	}
+	
+	@PostMapping("/admin/movieUpdated/{movieId}")
+	public String updateMovie(@ModelAttribute("movie") Movie updated, 
+			@PathVariable("movieId") Long id,  Model model, @RequestParam("file") MultipartFile file) {
+			Movie movie = this.movieService.findById(id);
+			if(!(movie.getTitle().equals(updated.getTitle())) || !(movie.getYear().equals(updated.getYear())) ) {
+				movie.setTitle(updated.getTitle());
+				movie.setYear(updated.getYear());
+			}
+			if(file.getSize() != 0) {
+				Image image = this.storageService.createImage(file);
+				movie.getImages().add(image);
+				this.imageService.save(image);
+			}
+			this.movieService.save(movie);
+			model.addAttribute("movie", movie);
+			return "movie.html";
 	}
 
 	@GetMapping("/movie/{id}")

@@ -1,7 +1,8 @@
 package it.uniroma3.siw.model;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +33,8 @@ public class Movie {
         @Max(2023)
         private Integer year;
         
-        private Set<File> images;
+        @OneToMany
+        private List<Image> images;
         
         @ManyToOne
         private Artist director;
@@ -45,6 +47,7 @@ public class Movie {
         
         public Movie() {
         	this.reviews = new HashSet<>();
+        	this.images = new ArrayList<>();
         }
     
         public Set<Review> getReviews() {
@@ -77,12 +80,13 @@ public class Movie {
         public void setYear(Integer year) {
             this.year = year;
         }
-        
-        public Set<File> getImages() {
+
+
+		public List<Image> getImages() {
 			return images;
 		}
 
-		public void setImages(Set<File> images) {
+		public void setImages(List<Image> images) {
 			this.images = images;
 		}
 

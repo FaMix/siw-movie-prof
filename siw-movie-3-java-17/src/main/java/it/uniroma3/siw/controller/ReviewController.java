@@ -40,7 +40,7 @@ public class ReviewController {
 					@ModelAttribute("review") Review review, BindingResult bindingResult, Model model) {
 		//this.reviewValidator.validate(review, bindingResult);
 		Movie movieAdded = this.movieService.findById(movieId);
-		Credentials credentials = this.credentialsService.findByUsername(username);
+		Credentials credentials = this.credentialsService.getCredentials(username);
 		User user = credentials.getUser();
 		if (!this.reviewService.existsByOwnerAndReviewedMovie(user, movieAdded)) {
 			this.movieService.addReviewToMovie(movieAdded, review);

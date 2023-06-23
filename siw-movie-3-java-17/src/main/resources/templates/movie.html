@@ -21,8 +21,12 @@
     <div th:if="${movie}">
         <span th:text="${movie.title}">Up!</span>
         <span th:text="'(' + ${movie.year} + ')'">2000</span>
-        <span><img width="5%" th:src=${movie.urlImage} /></span>
-        
+		<div th:if="${movie.images.isEmpty()}">Non ci sono immagini per questo film</div>
+		<ul>
+			<li th:each="image : ${movie.images}">
+				<img th:src="${image.path}"/>
+			</li>
+		</ul>        
         <div>
 			<h2>Recensioni</h2>
 			<div th:if="${movie.reviews.isEmpty()}">Non ci sono recensioni</div>
