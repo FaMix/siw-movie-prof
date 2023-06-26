@@ -9,12 +9,14 @@ import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Artist {
@@ -27,7 +29,9 @@ public class Artist {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
-	private String urlOfPicture;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Image picture;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfDeath;
@@ -99,14 +103,14 @@ public class Artist {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public String getUrlOfPicture() {
-		return urlOfPicture;
+	public Image getPicture() {
+		return picture;
 	}
-	
-	public void setUrlOfPicture(String urlOfPicture) {
-		this.urlOfPicture = urlOfPicture;
+
+	public void setPicture(Image picture) {
+		this.picture = picture;
 	}
-	
+
 	public Set<Movie> getActorOf() {
 		return starredMovies;
 	}

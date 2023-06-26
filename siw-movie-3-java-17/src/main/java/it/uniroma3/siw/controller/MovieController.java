@@ -3,6 +3,8 @@ package it.uniroma3.siw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.controller.validator.MovieValidator;
 import it.uniroma3.siw.model.Artist;
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.service.ArtistService;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.FileStorageService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.MovieService;
@@ -39,6 +43,9 @@ public class MovieController {
 	
 	@Autowired
 	private ImageService imageService;
+
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	@GetMapping(value="/admin/formNewMovie")
 	public String formNewMovie(Model model) {
@@ -120,6 +127,11 @@ public class MovieController {
 	@GetMapping("/movie/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("movie", this.movieService.findById(id));
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("currentUser", credentials.getUser());
+		if(credentials.getRole().equals(Credentials.ADMIN_ROLE))
+			return "admin/movieAdmin.html";
 		return "movie.html";
 	}
 

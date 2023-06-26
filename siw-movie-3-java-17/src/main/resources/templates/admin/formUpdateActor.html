@@ -3,7 +3,7 @@
 
 <head>
 	<title>
-		New Artist
+		Update Artist
 	</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
@@ -20,18 +20,18 @@
 	</header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1>Aggiungi un artista</h1>
-	<form th:action="@{/admin/artist}" method="POST" th:object="${artist}" enctype="multipart/form-data">
+	<h1>Modifica i dati di un artista</h1>
+	<form th:action="@{'/admin/artistUpdated/'+${artist.id}}" method="POST" th:object="${artist}" enctype="multipart/form-data">
 		<div>
 			<span th:text="${messaggioErrore}">Errore</span>
 		</div>
 		
 		<div>
-			<label>Nome:</label> <span><input required type="text" th:field="${artist.name}" /></span>
+			<label>Nome:</label> <span><input type="text" th:field="${artist.name}" /></span>
 		</div>
 
 		<div>
-			<label>Cognome:</label> <span><input required type="text" th:field="${artist.surname}" /></span>
+			<label>Cognome:</label> <span><input type="text" th:field="${artist.surname}" /></span>
 		</div>
 
 		<div>

@@ -67,6 +67,10 @@
 				<button type="button">Modifica</button>
 			</a>
 		</div>
+		<div>
+			<a th:href="@{'/movie/'+ ${movie.id}}"><button type="button">Fine</button></a>
+		</div>
+		
 		<div th:unless="${movie}">Film non esistente</div>
 </body>
 

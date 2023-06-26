@@ -11,6 +11,7 @@ import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.repository.MovieRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class MovieService {
@@ -60,8 +61,16 @@ public class MovieService {
 		return this.save(movie);
 	}
 
+	@Transactional
 	public void addReviewToMovie(Movie movie, Review review) {
 		movie.getReviews().add(review);
+	}
+
+	@Transactional
+	public boolean removeReviewFromMovie(Movie reviewedMovie, Review review) {
+		boolean res = reviewedMovie.getReviews().remove(review);
+		this.save(reviewedMovie);
+		return res;
 	}
 
 }

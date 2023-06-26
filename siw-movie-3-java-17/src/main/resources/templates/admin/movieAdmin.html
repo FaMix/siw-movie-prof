@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Film</title>
+    <title>Film Admin View</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -29,11 +29,10 @@
 		</ul>        
         <div>
 			<h2>Recensioni</h2>
-			<a th:href="@{'/formNewReview/'+${movie.id}}">Aggiungi una recensione</a>
 			<div th:if="${movie.reviews.isEmpty()}">Non ci sono recensioni</div>
 			<div th:each="review : ${movie.reviews}">
 				<h3 th:text="${review.title}" style="display: inline-block;"></h3>
-				<a th:if="${currentUser.equals(review.getOwner())}" th:href="@{'/updateReview'+${review.id}}">Modifica</a><br>
+				<a th:href="@{'/admin/deleteReview/'+${review.id}}">Cancella recensione</a><br>
 				<span th:text="${review.text}"></span><br>
 				<span th:text="${review.grade}"></span>
 			</div>

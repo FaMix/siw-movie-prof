@@ -40,4 +40,15 @@ public class ArtistService {
 		return this.artistRepo.findById(id).get();
 	}
 
+	public boolean isModified(Artist oldArtist, Artist updated) {
+		boolean res = oldArtist.getName().equals(updated.getName()) ||
+				oldArtist.getSurname().equals(updated.getSurname()) ||
+				oldArtist.getDateOfBirth().equals(updated.getDateOfBirth());
+		if(oldArtist.getDateOfDeath() != null)
+			return res || oldArtist.getDateOfDeath().equals(updated.getDateOfDeath());
+		if(updated.getDateOfDeath() != null)
+			return true;
+		return res;
+	}
+
 }

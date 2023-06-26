@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +32,12 @@ public class ReviewController {
 	
 	@GetMapping(value="/formNewReview/{movieId}")
 	public String formNewReview(@PathVariable("movieId") Long id, Model model) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if(!(credentials.getRole().equals("DEFAULT"))) {
+			model.addAttribute("movie", this.movieService.findById(id));
+			return "movie.html";
+		}
 		model.addAttribute("movieId", id);
 		model.addAttribute("review", new Review());
 		return "formNewReview.html";
@@ -49,9 +57,20 @@ public class ReviewController {
 			this.reviewService.save(review);
 			this.movieService.save(movieAdded);
 			model.addAttribute("movie", movieAdded);
+			model.addAttribute("currentUser", user);
 			return "movie.html";
 		} else {
 			return "formNewReview.html";
 		}
+	}
+	
+	@GetMapping("/admin/deleteReview/{id}")
+	public String deleteReview(@PathVariable("id") Long id, Model model) {
+		Review review = this.reviewService.findById(id);
+		Movie reviewedMovie = review.getReviewedMovie();
+		this.movieService.removeReviewFromMovie(reviewedMovie, review);
+		this.reviewService.deleteReview(id);
+		model.addAttribute("movie", reviewedMovie);
+		return "admin/movieAdmin.html";
 	}
 }
