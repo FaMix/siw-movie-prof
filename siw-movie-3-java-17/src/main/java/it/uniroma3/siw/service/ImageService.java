@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.repository.ImageRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ImageService {
@@ -12,8 +13,14 @@ public class ImageService {
 	@Autowired
 	ImageRepository imageRepo;
 	
+	@Transactional
 	public Image save(Image image) {
 		return this.imageRepo.save(image);
+	}
+
+	@Transactional
+	public void delete(Long id) {
+		this.imageRepo.deleteById(id);
 	}
 
 }

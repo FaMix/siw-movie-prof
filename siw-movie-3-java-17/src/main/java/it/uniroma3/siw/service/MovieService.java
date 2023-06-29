@@ -73,4 +73,9 @@ public class MovieService {
 		return res;
 	}
 
+	@Transactional
+	public void deleteMovie(Long id) {
+		this.movieRepo.deleteById(id);
+	}
+
 }

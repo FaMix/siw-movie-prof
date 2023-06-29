@@ -24,6 +24,7 @@
 		<li th:each="artist : ${artists}">
 			<span th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
 			<a th:href="@{'/admin/updateArtist/' + ${artist.id}}">Aggiorna</a>
+			<a th:href="@{'/admin/deleteArtist/' + ${artist.id}}">Cancella</a>
 		</li>
 	</ul>
 </body>

@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Artist {
@@ -24,17 +25,19 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
 	private String name;
+    @NotBlank
 	private String surname;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Image picture;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfDeath;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Image picture;
 	
 	@ManyToMany(mappedBy="actors")
 	private Set<Movie> starredMovies;

@@ -29,13 +29,13 @@
 			<form th:action="@{'/admin/movieUpdated/'+${movie.id}}" method="POST" th:object="${movie}" enctype="multipart/form-data">
 				<div>
 					<label>Titolo:</label> 
-					<span><input type="text" th:field="${movie.title}" /></span>
+					<span><input type="text" th:placeholder="${movie.title}" th:field="${movie.title}" /></span>
 		  	  		<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
 		    		</span>
 				</div>
 
 				<div>
-					<label>Anno:</label> <span><input type="text" th:field="${movie.year}" /></span>
+					<label>Anno:</label> <span><input type="number" th:placeholder="${movie.year}" th:field="${movie.year}" /></span>
 		   			<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">
 		  			</span>
 				</div>
