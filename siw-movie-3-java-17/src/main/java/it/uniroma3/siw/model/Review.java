@@ -14,28 +14,28 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Review {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	 @NotBlank
-     private String title;
-     
-     @NotNull
-     @Min(1)
-     @Max(5)
-     private Integer grade;
-     
-     @NotBlank
-     @Column(length = 2000)
-     private String text;
-     
- 	@ManyToOne
- 	private Movie reviewedMovie;
- 	
- 	@ManyToOne
- 	private User owner;
+	@NotBlank
+	private String title;
+
+	@NotNull
+	@Min(1)
+	@Max(5)
+	private Integer grade;
+
+	@NotBlank
+	@Column(length = 2000)
+	private String text;
+
+	@ManyToOne
+	private Movie reviewedMovie;
+
+	@ManyToOne
+	private User owner;
 
 	public Long getId() {
 		return id;

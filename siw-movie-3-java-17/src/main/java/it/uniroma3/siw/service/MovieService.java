@@ -67,13 +67,6 @@ public class MovieService {
 	}
 
 	@Transactional
-	public boolean removeReviewFromMovie(Movie reviewedMovie, Review review) {
-		boolean res = reviewedMovie.getReviews().remove(review);
-		this.save(reviewedMovie);
-		return res;
-	}
-
-	@Transactional
 	public void deleteMovie(Long id) {
 		this.movieRepo.deleteById(id);
 	}

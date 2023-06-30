@@ -18,16 +18,15 @@
 	</header>
 	
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1>Scrivi una recensione</h1>
-	<form th:action="@{'/review/'+${movieId}}" method="POST" th:object="${review}">
+	<h1>Modifica la recensione</h1>
+	<form th:action="@{'/updateReview/'+${review.id}}" method="POST" th:object="${review}">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
   		</div>
   		
-		<input type="hidden" th:name="username" th:value="${userDetails.username}" />
 		<div>
 			<label>Titolo:</label>
-			<span><input type="text" th:field="${review.title}" /></span>
+			<span><input type="text" th:field="${review.title}"/></span>
 		    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
 		    </span>
 		</div>
