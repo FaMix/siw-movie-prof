@@ -3,6 +3,7 @@ package it.uniroma3.siw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -129,7 +130,7 @@ public class MovieController {
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("movie", this.movieService.findById(id));
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication.getPrincipal().equals("anonymousUser"))
+		if (authentication instanceof AnonymousAuthenticationToken)
 			return "movie.html";
 		UserDetails userDetails = (UserDetails)authentication.getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());

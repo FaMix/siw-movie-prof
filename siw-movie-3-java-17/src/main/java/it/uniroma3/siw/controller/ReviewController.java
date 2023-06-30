@@ -39,7 +39,7 @@ public class ReviewController {
 	public String formNewReview(@PathVariable("movieId") Long id, Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		if(!(credentials.getRole().equals("DEFAULT"))) {
+		if(!(credentials.getRole().equals(Credentials.DEFAULT_ROLE))) {
 			model.addAttribute("movie", this.movieService.findById(id));
 			return "movie.html";
 		}
