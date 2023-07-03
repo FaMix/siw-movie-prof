@@ -14,7 +14,7 @@
 
 	<div class="container text-center">
 		<a href="/"><img src="/images/logo-siw.png" width="50%" /></a>
-		<h1>Gestione Film</h1>
+		<h1 class="mt-4 mb-4">Gestione Film</h1>
 		<div th:if="${movies.isEmpty()}">Non ci sono film nel sistema</div>
 		<ul class="list-group">
 			<li class="mb-4 list-group-item" th:each="movie : ${movies}">

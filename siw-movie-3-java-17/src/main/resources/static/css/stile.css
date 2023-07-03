@@ -73,3 +73,12 @@ header a:hover {
 .linkUpdateMovie:hover:before {
 	transform: translateX(0)
 }
+
+#linkUpdateRegista {
+	color:black;
+	transition: color 0.2s ease-in-out;
+}
+
+#linkUpdateRegista:hover {
+	color: white;
+}
