@@ -99,6 +99,7 @@ public class MovieController {
 				movie.getImages().add(image);
 				this.imageService.save(image);
 			}
+			this.movieService.addDefaultPicture(movie);
 			this.movieService.save(movie); 
 			model.addAttribute("movie", movie);
 			
@@ -120,6 +121,9 @@ public class MovieController {
 				Image image = this.storageService.createImage(file);
 				movie.getImages().add(image);
 				this.imageService.save(image);
+				if(this.movieService.hasDefaultPicture(movie)) {
+					this.movieService.removeDefaultPicture(movie);
+				}
 			}
 			this.movieService.save(movie);
 			model.addAttribute("movie", movie);
@@ -141,8 +145,16 @@ public class MovieController {
 	}
 
 	@GetMapping("/movie")
-	public String getMovies(Model model) {		
+	public String getMovies(@RequestParam(defaultValue = "1") Integer currentPage, Model model) {		
 		model.addAttribute("movies", this.movieService.findAll());
+		model.addAttribute("currentPage", currentPage);
+		return "movies.html";
+	}
+	
+	@GetMapping("/movies/{page}")
+	public String getMoviesPaging(@PathVariable("page") Integer currentPage, Model model) {		
+		model.addAttribute("movies", this.movieService.findAll());
+		model.addAttribute("currentPage", currentPage);
 		return "movies.html";
 	}
 	

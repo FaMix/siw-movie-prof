@@ -10,26 +10,20 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
-	<h1>Film</h1>
-	<div th:if="${movies.isEmpty()}">Non ci sono film nel sistema</div>
-	<ul>
-		<li th:each="movie : ${movies}">
-			<span th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</span>
-			<a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}">Aggiorna</a>
-			<a th:href="@{'/admin/deleteMovie/'+${movie.id}}">Cancella</a>
-		</li>
-	</ul>
+	<div class="container text-center">
+		<a href="/"><img src="/images/logo-siw.png" width="50%" /></a>
+		<h1>Gestione Film</h1>
+		<div th:if="${movies.isEmpty()}">Non ci sono film nel sistema</div>
+		<ul class="list-group">
+			<li class="mb-4 list-group-item" th:each="movie : ${movies}">
+				<div th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</div>
+				<a class="linkUpdateMovie" th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}">Aggiorna</a>
+				<a class="linkUpdateMovie" th:href="@{'/admin/deleteMovie/'+${movie.id}}">Cancella</a>
+			</li>
+		</ul>
+	</div>
 </body>
 
 </html>

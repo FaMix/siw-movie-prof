@@ -23,4 +23,8 @@ public class ImageService {
 		this.imageRepo.deleteById(id);
 	}
 
+	public Image getDefaultMoviePicture() {
+		return this.imageRepo.findByFileName("default-movie.jpg").get();
+	}
+
 }

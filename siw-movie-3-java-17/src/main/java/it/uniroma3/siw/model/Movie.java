@@ -33,7 +33,7 @@ public class Movie {
 	@Max(2023)
 	private Integer year;
 
-	@OneToMany
+	@ManyToMany
 	private List<Image> images;
 
 	@ManyToOne

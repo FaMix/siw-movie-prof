@@ -10,15 +10,8 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
+
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1 th:text="'Attori del film ' + ${movie.title}"></h1>
 	<div th:if="${movie.actors.isEmpty()}">Non ci sono attori per questo film</div>
@@ -38,7 +31,7 @@
 		</ul>
 	<div>
 	<div>
-		<a th:href="@{'/admin/formUpdateMovie/'+ ${movie.id}}"><button type="button">Fine</button></a>
+		<a th:href="@{'/admin/formUpdateMovie/'+ ${movie.id}}"><button class="button buttonFine" type="button">Fine</button></a>
 	</div>
 </body>
 

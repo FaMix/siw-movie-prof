@@ -12,31 +12,24 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
-	<div><img src="/images/logo-siw.png" width="50%" /></div>
-	<h1>Consulta l'archivio</h1>
-	<div>
-		<a href="/movie">Elenco Film</a>
-	</div>
-	<div>
-		<a href="/artist">Elenco Artisti</a>
-	</div>
-	<h1>Operazioni per amministratore</h1>
-	<div>
-		<a href="/admin/indexMovie">Operazioni sui film</a>
-	</div>
-	<div>
-		<a href="/admin/indexArtist">Operazioni sugli artisti</a>
-	</div>
+	<div class="container">
+  <div class="text-center">
+    <img src="/images/logo-siw.png" class="img-fluid" alt="Logo" style="max-width: 50%;" />
+  </div>
+  <h1 class="text-center mt-4">Consulta l'archivio</h1>
+  <div class="text-center mt-5">
+    <a href="/movie" class="btn btn-primary btn-lg">Elenco Film</a>
+    <a href="/artist" class="btn btn-secondary btn-lg">Elenco Artisti</a>
+  </div>
+  <h1 class="text-center mt-5">Operazioni per amministratore</h1>
+  <div class="text-center mt-3">
+    <a href="/admin/indexMovie" class="btn btn-success btn-lg">Operazioni sui film</a>
+    <a href="/admin/indexArtist"><button class="btn btn-success btn-lg ml-2" style="white-space: nowrap; color: white;">Operazioni sugli artisti</button></a>
+  </div>
+</div>
+
 </body>
 
 </html>

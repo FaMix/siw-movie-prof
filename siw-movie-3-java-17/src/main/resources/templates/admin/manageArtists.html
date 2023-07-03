@@ -10,15 +10,7 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1>Artisti</h1>

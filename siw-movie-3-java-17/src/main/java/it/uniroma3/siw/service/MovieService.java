@@ -21,6 +21,9 @@ public class MovieService {
 	
 	@Autowired
 	ArtistRepository artistRepo;
+	
+	@Autowired
+	ImageService imageService;
 
 	public Movie findById(Long id) {
 		return this.movieRepo.findById(id).get();
@@ -69,6 +72,24 @@ public class MovieService {
 	@Transactional
 	public void deleteMovie(Long id) {
 		this.movieRepo.deleteById(id);
+	}
+
+	@Transactional
+	public void addDefaultPicture(Movie movie) {
+		if(movie.getImages().isEmpty()) {
+			movie.getImages().add(this.imageService.getDefaultMoviePicture());
+		}
+	}
+	
+	public boolean hasDefaultPicture(Movie movie) {
+		if(movie.getImages().contains(this.imageService.getDefaultMoviePicture()))
+			return true;
+		return false;
+	}
+
+	@Transactional
+	public void removeDefaultPicture(Movie movie) {
+		movie.getImages().remove(this.imageService.getDefaultMoviePicture());
 	}
 
 }

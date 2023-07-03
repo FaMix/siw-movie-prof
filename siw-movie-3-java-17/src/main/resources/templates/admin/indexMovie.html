@@ -12,27 +12,22 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
-	<h1>Gestione Film</h1>
-	<div>
-		<a href="/admin/formNewMovie">Inserisci i dati di un film</a>
-	</div>
-	<div>
-		<a href="/admin/manageMovies">Gestisci i film</a>
-	</div>
-	<div>
-		<a href="/formSearchMovies">Cerca film per anno</a>
-	</div>
+	<div class="container text-center">
+  <div><a href="/"><img src="/images/logo-siw.png" style="max-width: 50%;" /></a></div>
+  <h1 style="margin-top: 3%;">Gestione Film</h1>
+  <div class="mb-3">
+    <a class="btn btn-secondary btn-lg btn-block" href="/admin/formNewMovie">Inserisci i dati di un film</a>
+  </div>
+  <div class="mb-3">
+    <a class="btn btn-secondary btn-lg btn-block" href="/admin/manageMovies">Gestisci i film</a>
+  </div>
+  <div class="mb-3">
+    <a class="btn btn-secondary btn-lg btn-block" href="/formSearchMovies">Cerca film per anno</a>
+  </div>
+</div>
+
 </body>
 
 </html>

@@ -1,15 +1,14 @@
 body { 
-    font-family: "Geneva";
+    font-family: 'Open Sans', sans-serif;
     color:dimgrey;
+    background-color: aliceblue;
+    padding-top: 60px;
 }
 
 a {
-	text-decoration: none; 
+	text-decoration: none;
     color: darkgrey;
-}
-
-a:hover { 
-	text-decoration: underline; 
+    max-width: 200px;
 }
 
 label {
@@ -17,17 +16,60 @@ label {
 	display: inline-block;
 }
 
-header {
-  background-color: rgb(98, 192, 144);
-  color: white;
-  height: 1.5em;
-  margin-bottom: 0.5em;
-  padding: 0.2em;
-  text-align: right;
-}
 
 header a { 
-	text-decoration: none; 
     color: white;
     font-size: 0.6em;
+}
+
+header a:hover { 
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+	opacity: 0.5;
+	transition: 0.2s;
+}
+
+.linkUpdateMovie {
+	text-decoration: none;
+    background: transparent;
+    border: 2px solid #111;
+    bottom: -15px;
+    border-radius: 0;
+    color: #111;
+    display: inline-block;
+    font-size: .9rem;
+    font-weight: 700;
+    height: auto;
+    line-height: 7px;
+    overflow: hidden;
+    padding: 15px 30px;
+    position: relative;
+    text-transform: uppercase;
+    transition: color .2s ease-in-out;
+    z-index: 0;
+}
+
+.linkUpdateMovie:before {
+	background-color: #191e1e;
+	bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    /*-webkit-transform: translateX(-101%);*/
+	transform: translateX(-101%);
+	transition: .2s ease-in-out;
+	z-index: -1
+}
+            
+.linkUpdateMovie:hover {
+	color: #fff;
+	text-decoration: none
+}
+
+.linkUpdateMovie:hover:before {
+	transform: translateX(0)
 }

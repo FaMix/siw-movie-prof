@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -7,19 +9,25 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import it.uniroma3.siw.controller.ImageController;
 import it.uniroma3.siw.model.Image;
+import it.uniroma3.siw.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 
 @Service
 public class FileStorageService {
 	private final Path root = Paths.get("./src/main/resources/static/images");
+	
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Transactional
 	public void save(MultipartFile file) {
@@ -33,7 +41,7 @@ public class FileStorageService {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
-	
+
 	@Transactional
 	public void delete(String filename) {
 		try {
@@ -68,6 +76,25 @@ public class FileStorageService {
 			}
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("Error: " + e.getMessage());
+		}
+	}
+
+	@Transactional
+	public void init() throws FileNotFoundException {
+		File folder = ResourceUtils.getFile("./src/main/resources/static/images");
+
+		// Itera sui file nella cartella
+		for (File file : folder.listFiles()) {
+			if (file.isFile()) {
+				String fileName = file.getName();
+				String url = "http://localhost:8080/images/"+fileName;
+
+				// Crea un'istanza di Image e salvala nel database
+				Image image = new Image();
+				image.setFileName(fileName);
+				image.setPath(url);
+				imageRepository.save(image);
+			}
 		}
 	}
 }

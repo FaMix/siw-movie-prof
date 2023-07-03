@@ -6,30 +6,27 @@
 		SiwMovie - Homepage
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
-	<div><img src="/images/logo-siw.png" width="50%" /></div>
-	<h1>Consulta l'archivio</h1>
-	<div>
-		<a href="/movie">Elenco Film</a>
+
+	<div class="container-fluid">
+	<div class="text-center">
+		<img src="/images/logo-siw.png" class="img-fluid" style="max-width: 50%;" />
 	</div>
-	<div>
-		<a href="/artist">Elenco Artisti</a>
+	<h1 class="text-center mt-4">Consulta l'archivio</h1>
+	<div class="mt-5">
+		<a href="/movie" class="btn btn-primary btn-lg d-block mx-auto mb-3">Elenco Film</a>
+		<a href="/artist" class="btn btn-secondary btn-lg d-block mx-auto">Elenco Artisti</a>
 	</div>
+</div>
+
 </body>
 
 </html>

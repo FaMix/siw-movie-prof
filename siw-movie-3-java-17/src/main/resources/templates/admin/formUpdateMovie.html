@@ -12,15 +12,7 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
 	<h1>Aggiorna film</h1>
@@ -67,11 +59,11 @@
 				<span th:text="${actor.name} + ' ' + ${actor.surname}">Al Pacino</span>
 			</div>
 			<a th:href="@{'/admin/updateActors/' + ${movie.id}}">
-				<button type="button">Modifica</button>
+				<button class="button buttonUpdateActors" type="button">Modifica</button>
 			</a>
 		</div>
 		<div>
-			<a th:href="@{'/movie/'+ ${movie.id}}"><button type="button">Fine</button></a>
+			<a th:href="@{'/movie/'+ ${movie.id}}"><button class="button buttonFine" type="button">Fine</button></a>
 		</div>
 		
 		<div th:unless="${movie}">Film non esistente</div>
