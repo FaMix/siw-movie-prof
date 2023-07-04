@@ -1,0 +1,22 @@
+section {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.immagine {
+	margin-left: -35%;
+	margin-right: 5px;
+}
+
+@media screen and (max-width: 600px) {
+	.immagine {
+		margin-left: -20%;
+	}
+}
+
+.datiArtista {
+	display: flex;
+	flex-direction: column;
+}
+

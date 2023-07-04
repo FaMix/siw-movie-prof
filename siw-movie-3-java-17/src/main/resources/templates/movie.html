@@ -6,37 +6,110 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <body>
 	<header th:insert="~{/fragments/fragments.html :: header}"></header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-    <h1>Dettagli Film</h1>
+	<div class="container text-center">
+		<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
+    <h1 class="mt-4 mb-4">Dettagli Film</h1>
     <div th:if="${movie}">
-        <span th:text="${movie.title}">Up!</span>
+        <span class="h2" th:text="${movie.title}">Up!</span>
         <span th:text="'(' + ${movie.year} + ')'">2000</span>
 		<div th:if="${movie.images.isEmpty()}">Non ci sono immagini per questo film</div>
-		<ul>
-			<li th:each="image : ${movie.images}">
-				<img th:src="${image.path}"/>
-			</li>
-		</ul>        
+		
+		<div id="immaginiMovie" th:unless="${movie.images.isEmpty()}" class="mx-auto carousel slide" data-bs-ride="carousel">
+			<div th:if="${movie.images.size()<=5}" class="carousel-indicators">
+				<div th:each="image, iterator : ${movie.images}">
+					<button th:if="${image.equals(movie.images[0])}" type="button" data-bs-target="#immaginiMovie" data-bs-slide-to="0" class="active"></button>
+			   		<button th:unless="${image.equals(movie.images[0])}" type="button" data-bs-target="#immaginiMovie" th:data-bs-slide-to="${iterator.index}"></button>
+				</div>
+			</div>
+			<div class="carousel-inner">
+				<div th:each="image : ${movie.images}">
+	  				<div th:if="${image.equals(movie.images[0])}" class="carousel-item active">
+      					<img th:src="${image.path}" class="d-block mx-auto" width="auto" height="500px">
+      				</div>
+      				<div th:unless="${image.equals(movie.images[0])}" class="carousel-item">
+      					<img th:src="${image.path}" class="d-block mx-auto" width="auto" height="500px">
+      				</div>
+    			</div>
+  			</div>
+  			
+  			<button class="carousel-control-prev" type="button" data-bs-target="#immaginiMovie" data-bs-slide="prev">
+    			<span class="carousel-control-prev-icon" style="background-color: gray;"></span>
+ 			</button>
+  			<button class="carousel-control-next" type="button" data-bs-target="#immaginiMovie" data-bs-slide="next">
+    			<span class="carousel-control-next-icon" style="background-color: gray;"></span>
+  			</button>
+		</div>
+	</div>
+	
+	<div>
+			<h3 class="mt-3 mb-3">Cast del film</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Regista</th>
+					</tr>
+    			</thead>
+	    		<tbody>
+    	  			<tr th:if="${movie.director}" class="clickable" th:onclick="|window.location='@{'/artist/'+${movie.director.id}}'|" >
+						  <td style="cursor: pointer;" th:text="${movie.director.name}+' '+${movie.director.surname}"></td>
+	      			</tr>
+	      			<tr th:unless="${movie.director}">
+						<td>Nessun regista trovato</td>
+					</tr>
+	    		</tbody>
+	  		</table>
+	  		
+	  		<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Attori</th>
+					</tr>
+    			</thead>
+	    		<tbody>
+    	  			<tr th:if="${!movie.actors.isEmpty()}" th:each="actor : ${movie.actors}" 
+    	  					class="clickable" th:onclick="|window.location='@{'/artist/'+${actor.id}}'|" >
+						  <td style="cursor: pointer;" th:text="${actor.name}+' '+${actor.surname}"></td>
+	      			</tr>
+	      			<tr th:unless="${!movie.actors.isEmpty()}">
+						<td>Nessun attore trovato</td>
+					</tr>
+	    		</tbody>
+	  		</table>
+		</div>
+		       
         <div>
-			<h2>Recensioni</h2>
-			<a th:href="@{'/formNewReview/'+${movie.id}}">Aggiungi una recensione</a>
-			<div th:if="${movie.reviews.isEmpty()}">Non ci sono recensioni</div>
-			<div th:each="review : ${movie.reviews}">
-				<h3 th:text="${review.title}" style="display: inline-block;"></h3>
-				<span th:if="${currentUser}">
-					<a th:if="${currentUser.equals(review.getOwner())}" th:href="@{'/updateReview/'+${review.id}}">Modifica</a>
-				</span><br>
-				<span th:text="${review.text}"></span><br>
-				<span th:text="${review.grade}"></span>
+			<h2 class="mt-3" >Recensioni</h2>
+			<a class="btn btn-secondary" th:href="@{'/formNewReview/'+${movie.id}}">Aggiungi una recensione</a>
+			<div class="mt-3 mb-3" th:if="${movie.reviews.isEmpty()}">Non ci sono recensioni</div>
+			
+			<div id="accordion" class="mx-auto w-75 mb-5" th:unless="${movie.reviews.isEmpty()}">
+				<div class="card" th:each="review : ${movie.reviews}">
+					<div style="height:60px;" class="card-header btn" data-bs-toggle="collapse" th:href="${'#'+review.id}">
+						<div class="mt-2" style="text-align: left;" th:text="${review.title+' ('+review.getOwner().getName()+' '+review.getOwner().getSurname()+')'}"></div>
+					</div>
+					<div th:if="${currentUser.equals(review.getOwner())}">
+							<a class="btn btn-secondary" th:href="@{'/updateReview/'+${review.id}}">Modifica</a>
+					</div>
+      				<div th:id="${review.id}" class="collapse" data-bs-parent="#accordion">
+        				<div class="card-body">
+          					<div style="text-align: left;" th:text="${review.text}"></div>
+          					<div style="text-align: left;" th:text="${'Voto: '+review.grade}"></div>
+        				</div>
+      				</div>
+    			</div>
 			</div>
 		</div>
     </div>
     
     <div th:unless="${movie}">Non esiste</div>
+    
+    </div>
   </body>
 </html>
