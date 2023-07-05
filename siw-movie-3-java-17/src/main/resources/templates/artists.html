@@ -18,8 +18,8 @@
     </div>
     <div th:if="${artists==null || artists.isEmpty()}">Non ci sono artisti nel sistema</div>
     <div class="text-center listArtist profiles">
-        <a class="listArtist profile" th:each="artist : ${artists}" th:href="@{'/artist' + '/' + ${artist.id}}">
-            <img th:src="${artist.picture !=null ? artist.picture.path : '/images/default-artist-picture.jpg'}" class="listArtist picture" />
+        <a class="listArtist profile" style="height: 200px;" th:each="artist : ${artists}" th:href="@{'/artist' + '/' + ${artist.id}}">
+            <img height="80%" th:src="${artist.picture !=null ? artist.picture.path : '/images/default-artist-picture.jpg'}" class="listArtist picture" />
             <div class="listArtist name" th:href="@{'/artist' + '/' + ${artist.id}}" th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</div>
         </a>
     </div>

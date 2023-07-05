@@ -25,7 +25,7 @@ import jakarta.transaction.Transactional;
 @Service
 public class FileStorageService {
 	private final Path root = Paths.get("./src/main/resources/static/images");
-	
+
 	@Autowired
 	ImageRepository imageRepository;
 
@@ -87,13 +87,14 @@ public class FileStorageService {
 		for (File file : folder.listFiles()) {
 			if (file.isFile()) {
 				String fileName = file.getName();
-				String url = "http://localhost:8080/images/"+fileName;
+				if(!this.imageRepository.existsByFileName(fileName)) {
+					String url = "http://localhost:8080/images/"+fileName;
 
-				// Crea un'istanza di Image e salvala nel database
-				Image image = new Image();
-				image.setFileName(fileName);
-				image.setPath(url);
-				imageRepository.save(image);
+					Image image = new Image();
+					image.setFileName(fileName);
+					image.setPath(url);
+					imageRepository.save(image);
+				}
 			}
 		}
 	}

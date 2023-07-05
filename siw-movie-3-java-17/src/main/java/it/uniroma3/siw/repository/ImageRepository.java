@@ -8,4 +8,7 @@ import it.uniroma3.siw.model.Image;
 
 public interface ImageRepository extends CrudRepository<Image, Long>{
 	public Optional<Image> findByFileName(String filename);
+
+	public boolean existsByFileName(String fileName);
+	
 }
