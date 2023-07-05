@@ -1,22 +1,22 @@
 section {
 	display: flex;
 	align-items: flex-start;
-	justify-content: center;
 }
 
 .immagine {
-	margin-left: -35%;
-	margin-right: 5px;
+	order: 0;
+	margin-left: 10%;
+	width: 30%;
 }
 
 @media screen and (max-width: 600px) {
 	.immagine {
-		margin-left: -20%;
+		margin-left: 0;
 	}
 }
 
 .datiArtista {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 }
-
