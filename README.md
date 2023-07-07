@@ -12,7 +12,10 @@ Scenario principale di successo:
 4. Il sistema registra il film e mostra la pagina del nuovo film.
    
 Estensioni:
+
 3a. Il film non viene inserito correttamente, il sistema ritorna alla pagina di inserimento.
+
+
 
 CASO D'USO UC2: Aggiornamento film
 Attore primario: Amministratore
@@ -25,7 +28,10 @@ Scenario principale di successo:
 4. Il sistema aggiorna il film e mostra la pagina del film aggiornata.
    
 Estensioni:
+
 3a. Il film non viene aggiornato correttamente, il sistema ritorna alla pagina di aggiornamento.
+
+
 
 CASO D'USO UC3: Inserimento Recensione
 Attore primario: Utende Registrato
@@ -38,7 +44,10 @@ Scenario principale di successo:
 4. Il sistema registra la recenesion, la aggiunge alla lista di recensioni del film e mostra la pagine del film con la nuova recensione.
    
 Estensioni:
+
 3a. La recensione non viene inserita correttamente, il sistema ritorna alla pagina di inserimento.
+
+
 
 CASO D'USO UC4: Aggiornamento recensione
 Attore primario: Utente Registrato
@@ -51,7 +60,10 @@ Scenario principale di successo:
 4. Il sistema aggiorna la recensione e mostra la pagina del film aggiornata.
    
 Estensioni:
+
 3a. La recensione non viene aggiornata correttamente, il sistema ritorna alla pagina di aggiornamento.
+
+
 
 CASO D'USO UC5: Consulta Recensione
 Attore primario: Utente non registrato
