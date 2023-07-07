@@ -10,6 +10,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina per aggiungere un nuovo film.
 3. L'amministratore inserisce nome, anno ed un'immagine per il film.
 4. Il sistema registra il film e mostra la pagina del nuovo film.
+   
 Estensioni:
 3a. Il film non viene inserito correttamente, il sistema ritorna alla pagina di inserimento.
 
@@ -22,6 +23,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina di aggiornamento di un film.
 3. L'amministratore aggiorna nome o anno, inoltre può aggiungere una nuova immagine.
 4. Il sistema aggiorna il film e mostra la pagina del film aggiornata.
+   
 Estensioni:
 3a. Il film non viene aggiornato correttamente, il sistema ritorna alla pagina di aggiornamento.
 
@@ -34,6 +36,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina di inserimento recensione per un film.
 3. L'utente inserisce titolo, testo e voto della recensione.
 4. Il sistema registra la recenesion, la aggiunge alla lista di recensioni del film e mostra la pagine del film con la nuova recensione.
+   
 Estensioni:
 3a. La recensione non viene inserita correttamente, il sistema ritorna alla pagina di inserimento.
 
@@ -46,6 +49,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina di aggiornamento di una recensione per un film.
 3. L'utente aggiorna nome, anno oppure voto della recensione.
 4. Il sistema aggiorna la recensione e mostra la pagina del film aggiornata.
+   
 Estensioni:
 3a. La recensione non viene aggiornata correttamente, il sistema ritorna alla pagina di aggiornamento.
 
