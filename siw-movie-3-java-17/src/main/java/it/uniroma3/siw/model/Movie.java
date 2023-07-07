@@ -46,6 +46,7 @@ public class Movie {
 	private Set<Review> reviews;
 
 	public Movie() {
+		this.actors = new HashSet<>();
 		this.reviews = new HashSet<>();
 		this.images = new ArrayList<>();
 	}
