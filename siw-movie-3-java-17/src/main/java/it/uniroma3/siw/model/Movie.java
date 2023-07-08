@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,16 +35,16 @@ public class Movie {
 	@Max(2023)
 	private Integer year;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Image> images;
 
 	@ManyToOne
 	private Artist director;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Artist> actors;
 
-	@OneToMany(mappedBy = "reviewedMovie")
+	@OneToMany(mappedBy = "reviewedMovie", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Review> reviews;
 
 	public Movie() {
