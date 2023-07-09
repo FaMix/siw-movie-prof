@@ -1,8 +1,6 @@
 package it.uniroma3.siw.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,7 +34,7 @@ public class Movie {
 	private Integer year;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Image> images;
+	private Set<Image> images;
 
 	@ManyToOne
 	private Artist director;
@@ -50,7 +48,7 @@ public class Movie {
 	public Movie() {
 		this.actors = new HashSet<>();
 		this.reviews = new HashSet<>();
-		this.images = new ArrayList<>();
+		this.images = new HashSet<>();
 	}
 
 	public Set<Review> getReviews() {
@@ -85,11 +83,11 @@ public class Movie {
 	}
 
 
-	public List<Image> getImages() {
+	public Set<Image> getImages() {
 		return images;
 	}
 
-	public void setImages(List<Image> images) {
+	public void setImages(Set<Image> images) {
 		this.images = images;
 	}
 
