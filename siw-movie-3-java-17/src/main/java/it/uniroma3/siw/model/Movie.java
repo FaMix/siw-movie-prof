@@ -90,6 +90,7 @@ public class Movie {
 	public void setImages(Set<Image> images) {
 		this.images = images;
 	}
+	
 
 	public Artist getDirector() {
 		return director;
