@@ -28,7 +28,6 @@ public class FileStorageService {
 
 	@Autowired
 	ImageRepository imageRepository;
-	
 
 	@Transactional
 	public void save(MultipartFile file) {
