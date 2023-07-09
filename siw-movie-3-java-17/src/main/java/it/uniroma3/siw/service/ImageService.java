@@ -26,5 +26,9 @@ public class ImageService {
 	public Image getDefaultMoviePicture() {
 		return this.imageRepo.findByFileName("default-movie.jpg").get();
 	}
+	
+	public boolean existsByFilename(String filename) {
+		return this.imageRepo.existsByFileName(filename);
+	}
 
 }
