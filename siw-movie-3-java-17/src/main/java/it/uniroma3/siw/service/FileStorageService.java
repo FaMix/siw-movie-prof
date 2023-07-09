@@ -34,6 +34,7 @@ public class FileStorageService {
 		try {
 			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 		} catch (Exception e) {
+			
 			throw new RuntimeException(e.getMessage());
 		}
 	}
