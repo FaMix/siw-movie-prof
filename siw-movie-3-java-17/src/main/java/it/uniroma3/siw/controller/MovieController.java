@@ -121,8 +121,10 @@ public class MovieController {
 			}
 			if(file.getSize() != 0) {
 				Image image = this.storageService.createImage(file);
-				movie.getImages().add(image);
-				this.imageService.save(image);
+				if(!this.imageService.existsByFilename(image.getFileName())) {
+					movie.getImages().add(image);
+					this.imageService.save(image);
+				}
 				if(this.movieService.hasDefaultPicture(movie)) {
 					this.movieService.removeDefaultPicture(movie);
 				}
