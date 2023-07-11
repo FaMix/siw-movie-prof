@@ -9,24 +9,21 @@ Scenario principale di successo:
 1. L'amministratore inizia l'inserimento di un nuovo film.
 2. Il sistema mostra la pagina per aggiungere un nuovo film.
 3. L'amministratore inserisce nome, anno ed un'immagine per il film.
-4. Il sistema registra il film e mostra la pagina del nuovo film.
-Estensioni:
+4. Il sistema registra il film e mostra la pagina del nuovo film.<br>
+Estensioni:<br>
 3a. Il film non viene inserito correttamente, il sistema ritorna alla pagina di inserimento.
-
-
-
-CASO D'USO UC2: Aggiornamento film
-Attore primario: Amministratore
-Pre-condizioni: L'amministratore è autenticato
-Post-condizioni: Il film viene aggiornato, il database viene aggiornato.
+<br>
+<br>
+CASO D'USO UC2: Aggiornamento film<br>
+Attore primario: Amministratore<br>
+Pre-condizioni: L'amministratore è autenticato<br>
+Post-condizioni: Il film viene aggiornato, il database viene aggiornato.<br>
 Scenario principale di successo:
 1. L'amministratore inizia l'aggiornamento di un film.
 2. Il sistema mostra la pagina di aggiornamento di un film.
 3. L'amministratore aggiorna nome o anno, inoltre può aggiungere una nuova immagine.
-4. Il sistema aggiorna il film e mostra la pagina del film aggiornata.
-   
-Estensioni:
-
+4. Il sistema aggiorna il film e mostra la pagina del film aggiornata.<br>
+Estensioni:<br>
 3a. Il film non viene aggiornato correttamente, il sistema ritorna alla pagina di aggiornamento.
 
 
