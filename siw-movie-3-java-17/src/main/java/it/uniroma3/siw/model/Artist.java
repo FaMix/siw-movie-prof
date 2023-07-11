@@ -144,5 +144,4 @@ public class Artist {
 		Artist other = (Artist) obj;
 		return Objects.equals(name, other.name) && Objects.equals(surname, other.surname);
 	}
-
 }
