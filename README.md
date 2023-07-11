@@ -79,7 +79,7 @@ CASO D'USO UC6: Consulta Film Diretti da Regista<br>
 Attore primario: Utente non registrato<br>
 Pre-condizioni: Nessuna<br>
 Post-condizioni: Nessuna<br>
-Scenario principale di successo:
+Scenario principale di successo:<br>
 1. L'utente accede alla pagina principale del sistema.
 2. Il sistema mostra la pagina principale.
 3. L'utente preme il pulsante per consultare la lista di artisti.
