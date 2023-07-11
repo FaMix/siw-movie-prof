@@ -2,8 +2,6 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -43,11 +41,11 @@ public class Artist {
 	private Set<Movie> starredMovies;
 	
 	@OneToMany(mappedBy="director")
-	private List<Movie> directedMovies;
+	private Set<Movie> directedMovies;
 	
 	public Artist(){
 		this.starredMovies = new HashSet<>();
-		this.directedMovies = new LinkedList<>();
+		this.directedMovies = new HashSet<>();
 	}
 	
 	public LocalDate getDateOfDeath() {
@@ -66,11 +64,11 @@ public class Artist {
 		this.starredMovies = starredMovies;
 	}
 
-	public List<Movie> getDirectedMovies() {
+	public Set<Movie> getDirectedMovies() {
 		return directedMovies;
 	}
 
-	public void setDirectedMovies(List<Movie> directedMovies) {
+	public void setDirectedMovies(Set<Movie> directedMovies) {
 		this.directedMovies = directedMovies;
 	}
 
@@ -122,11 +120,11 @@ public class Artist {
 		this.starredMovies = starredMovies;
 	}
 
-	public List<Movie> getDirectorOf() {
+	public Set<Movie> getDirectorOf() {
 		return directedMovies;
 	}
 
-	public void setDirectorOf(List<Movie> directedMovies) {
+	public void setDirectorOf(Set<Movie> directedMovies) {
 		this.directedMovies = directedMovies;
 	}
 
