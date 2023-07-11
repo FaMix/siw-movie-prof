@@ -28,47 +28,43 @@ Scenario principale di successo:
 
 Estensioni:<br>
 3a. Il film non viene aggiornato correttamente, il sistema ritorna alla pagina di aggiornamento.
-
-
-
-
-
-CASO D'USO UC3: Inserimento Recensione
-Attore primario: Utende Registrato
-Pre-condizioni: L'utente è autenticato.
-Post-condizioni: La recensione viene registrata ed aggiunta al film, il database viene aggiornato.
+<br>
+<br>
+<br>
+CASO D'USO UC3: Inserimento Recensione<br>
+Attore primario: Utende Registrato<br>
+Pre-condizioni: L'utente è autenticato.<br>
+Post-condizioni: La recensione viene registrata ed aggiunta al film, il database viene aggiornato.<br>
 Scenario principale di successo:
 1. L'utente inizia l'inserimento di una recenesione per un film.
 2. Il sistema mostra la pagina di inserimento recensione per un film.
 3. L'utente inserisce titolo, testo e voto della recensione.
 4. Il sistema registra la recenesion, la aggiunge alla lista di recensioni del film e mostra la pagine del film con la nuova recensione.
    
-Estensioni:
-
+Estensioni:<br>
 3a. La recensione non viene inserita correttamente, il sistema ritorna alla pagina di inserimento.
-
-
-
-CASO D'USO UC4: Aggiornamento recensione
-Attore primario: Utente Registrato
-Pre-condizioni: L'utente è autenticato.
-Post-condizioni: La recensione viene aggiornata, il database viene aggiornato.
+<br>
+<br>
+<br>
+CASO D'USO UC4: Aggiornamento recensione<br>
+Attore primario: Utente Registrato<br>
+Pre-condizioni: L'utente è autenticato.<br>
+Post-condizioni: La recensione viene aggiornata, il database viene aggiornato.<br>
 Scenario principale di successo:
 1. L'utente inizia l'aggiornamento di una recensione per un film.
 2. Il sistema mostra la pagina di aggiornamento di una recensione per un film.
 3. L'utente aggiorna nome, anno oppure voto della recensione.
 4. Il sistema aggiorna la recensione e mostra la pagina del film aggiornata.
-   
-Estensioni:
 
+Estensioni:<br>
 3a. La recensione non viene aggiornata correttamente, il sistema ritorna alla pagina di aggiornamento.
-
-
-
-CASO D'USO UC5: Consulta Recensione
-Attore primario: Utente non registrato
-Pre-condizioni: Nessuna
-Post-condizioni: Nessuna
+<br>
+<br>
+<br>
+CASO D'USO UC5: Consulta Recensione<br>
+Attore primario: Utente non registrato<br>
+Pre-condizioni: Nessuna<br>
+Post-condizioni: Nessuna<br>
 Scenario principale di successo:
 1. L'utente accede alla pagina principale del sistema.
 2. Il sistema mostra la pagina principale.
@@ -76,11 +72,13 @@ Scenario principale di successo:
 4. Il sistema mostra l'archivio dei film presenti.
 5. L'utente apre il film di interesse.
 6. Il sistema mostra la pagina con il film scelto e le sue recensioni.
-
-CASO D'USO UC6: Consulta Film Diretti da Regista
-Attore primario: Utente non registrato
-Pre-condizioni: Nessuna
-Post-condizioni: Nessuna
+<br>
+<br>
+<br>
+CASO D'USO UC6: Consulta Film Diretti da Regista<br>
+Attore primario: Utente non registrato<br>
+Pre-condizioni: Nessuna<br>
+Post-condizioni: Nessuna<br>
 Scenario principale di successo:
 1. L'utente accede alla pagina principale del sistema.
 2. Il sistema mostra la pagina principale.
