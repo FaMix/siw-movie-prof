@@ -10,6 +10,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina per aggiungere un nuovo film.
 3. L'amministratore inserisce nome, anno ed un'immagine per il film.
 4. Il sistema registra il film e mostra la pagina del nuovo film.<br>
+
 Estensioni:<br>
 3a. Il film non viene inserito correttamente, il sistema ritorna alla pagina di inserimento.
 <br>
