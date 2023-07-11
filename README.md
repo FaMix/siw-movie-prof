@@ -80,9 +80,9 @@ Attore primario: Utente non registrato<br>
 Pre-condizioni: Nessuna<br>
 Post-condizioni: Nessuna<br>
 Scenario principale di successo:<br>
-1. L'utente accede alla pagina principale del sistema.
-2. Il sistema mostra la pagina principale.
-3. L'utente preme il pulsante per consultare la lista di artisti.
-4. Il sistema mostra l'archivio degli artisti presenti.
-5. L'utente apre la pagina dell'artista di interesse.
+1. L'utente accede alla pagina principale del sistema.<br>
+2. Il sistema mostra la pagina principale.<br>
+3. L'utente preme il pulsante per consultare la lista di artisti.<br>
+4. Il sistema mostra l'archivio degli artisti presenti.<br>
+5. L'utente apre la pagina dell'artista di interesse.<br>
 6. Il sistema mostra la pagina con l'artista scelto con la lista dei film che ha diretto.
