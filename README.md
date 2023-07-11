@@ -15,6 +15,7 @@ Estensioni:<br>
 3a. Il film non viene inserito correttamente, il sistema ritorna alla pagina di inserimento.
 <br>
 <br>
+<br>
 CASO D'USO UC2: Aggiornamento film<br>
 Attore primario: Amministratore<br>
 Pre-condizioni: L'amministratore è autenticato<br>
@@ -24,6 +25,7 @@ Scenario principale di successo:
 2. Il sistema mostra la pagina di aggiornamento di un film.
 3. L'amministratore aggiorna nome o anno, inoltre può aggiungere una nuova immagine.
 4. Il sistema aggiorna il film e mostra la pagina del film aggiornata.<br>
+
 Estensioni:<br>
 3a. Il film non viene aggiornato correttamente, il sistema ritorna alla pagina di aggiornamento.
 
